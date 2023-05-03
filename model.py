@@ -46,7 +46,8 @@ class Rating(db.Model):
     rating_id = db.Column(db.Integer, autoincrement= True, primary_key = True)
     score = db.Column(db.Integer)
     movie_id = db.Column(db.Integer, db.ForeignKey("movies.movie_id"))
-    user_id = db.Column(db.Integer, db.ForeingKey("users.user_id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+    
 
 
     movie = db.relationship("Movie", back_populates="ratings")
