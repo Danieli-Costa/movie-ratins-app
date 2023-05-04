@@ -15,20 +15,19 @@ os.system("createdb ratings")
 model.connect_to_db(server.app)
 model.db.create_all()
 
-with open('data/movies.json') as f:
+with open("data/movies.json") as f:
     movie_data = json.loads(f.read())
 
 movies_in_db = []
-for movie in movie_data:
-    # TODO: get the title, overview, and poster_path from the movie
-    # dictionary. Then, get the release_date and convert it to a
-    # datetime object with datetime.strptime
-    title, overview, poster_path = (movie["title"], 
-                                    movie["overview"], 
-                                    movie["poster_path"],)
+for movie in movie_data:    
+    title, overview, poster_path = (
+        movie["title"],
+        movie["overview"],
+        movie["poster_path"],
+    )
 
     release_date = datetime.strptime(movie["release_date"], "%Y-%m-%d")
-    # TODO: create a movie here and append it to movies_in_db
+
     movie_db = crud.create_movie(title, overview, release_date, poster_path)
     movies_in_db.append(movie_db)
     
